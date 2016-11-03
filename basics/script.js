@@ -12,5 +12,4 @@ var MainController = function(t) {
   // which creates maincontroller regardless of funciton argument name
   app.controller("MainController", ["$scope",MainController])
 
-
 }());
