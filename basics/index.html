@@ -7,9 +7,16 @@
     <script src="script.js"></script>
   </head>
 
-  <body>
+  <body ng-controller="MainController">
     <h1>Hello Plunker!</h1>
-    <p ng-controller="MainController">{{message}}</p>
+    <p>{{message}}</p>
+
+    <h1>My Github Account Info</h1>
+    <ul>
+    <li>Login: {{user.login}}</li>
+    <li>Company: {{user.company}}</li>
+    <li>Pirture<img ng-src="{{user.avatar_url}}" title="{{user.login}}" /></li>
+    </ul>
   </body>
 
 </html>
