@@ -7,9 +7,16 @@
 
 
 var MainController = function(scope, http) {
-    var onComplete = function(response) {
+
+  var onComplete = function(response) {
     scope.user = response.data
+    http.get(response.data.repos_url).then(onRepos, onError)
   }
+
+  var onRepos = function(response) {
+    scope.repos = response.data
+  }
+
 
   var onError = function(reason) {
     scope.error = "Error Happenede!"
@@ -17,7 +24,7 @@ var MainController = function(scope, http) {
 
   scope.search = function(username) {
                   http.get("https://api.github.com/users/" + username).then(onComplete, onError)
-                 }
+                }
 
   scope.message="Hello Angular!!"
 }
