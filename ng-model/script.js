@@ -12,10 +12,13 @@ var MainController = function(scope, http) {
   }
 
   var onError = function(reason) {
-    scope.error_reason = reason
+    scope.error = "Error Happenede!"
   }
 
-  http.get("https://api.github.com/users/maiorovi").then(onComplete, onError)
+  scope.search = function(username) {
+                  http.get("https://api.github.com/users/" + username).then(onComplete, onError)
+                 }
+
   scope.message="Hello Angular!!"
 }
 

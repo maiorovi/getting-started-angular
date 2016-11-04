@@ -10,11 +10,11 @@
   <body ng-controller="MainController">
 
     <h1>{{message}}</h1>
-
+<div><p>Error happened:{{error}}</p></div>
 
         {{username}}
-        <form>
-          <input type="search" placeholder="username to search" ng-model="username" />
+        <form ng-submit="search(username)">
+          <input type="search" required placeholder="username to search" ng-model="username" />
           <input type="submit" value="search" />
         </form>
 
