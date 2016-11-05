@@ -10,13 +10,15 @@
   <body ng-controller="MainController">
 
     <h1>{{message}}</h1>
-<div><p>Error happened:{{error}}</p></div>
+    <div><p>Error happened:{{error}}</p></div>
+
 
         {{username}}
         <form ng-submit="search(username)">
           <input type="search" required placeholder="username to search" ng-model="username" />
           <input type="submit" value="search" />
         </form>
+        <div>Countdown: {{countdown}}</div>
       <div ng-include="'userdetails.html'"></div>
   </body>
 
