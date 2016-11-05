@@ -6,7 +6,7 @@
 
 
 
-var MainController = function(scope, http, $interval, $log) {
+var MainController = function(scope, http, $interval, $log, $location) {
 
   var onComplete = function(response) {
     scope.user = response.data
@@ -15,6 +15,7 @@ var MainController = function(scope, http, $interval, $log) {
 
   var onRepos = function(response) {
     scope.repos = response.data
+    $location.hash("userDetails")
   }
 
 
@@ -49,6 +50,6 @@ var MainController = function(scope, http, $interval, $log) {
 
   // here we ask angular to pass scope as a first parameter to function
   // which creates maincontroller regardless of funciton argument name
-  app.controller("MainController", ["$scope", "$http", "$interval", "$log", MainController])
+  app.controller("MainController", ["$scope", "$http", "$interval", "$log", "$location", MainController])
 
 }());
