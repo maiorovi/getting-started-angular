@@ -6,7 +6,7 @@
 
 
 
-var MainController = function(scope, http, $interval) {
+var MainController = function(scope, http, $interval, $log) {
 
   var onComplete = function(response) {
     scope.user = response.data
@@ -28,13 +28,18 @@ var MainController = function(scope, http, $interval) {
       scope.search(scope.username)
     }
   }
-
+  var countdownInterval = null
   var startCountDown = function() {
-    $interval(decrementCountdown, 1000, scope.countdown)
+    countdownInterval = $interval(decrementCountdown, 1000, scope.countdown)
   }
 
   scope.search = function(username) {
+                  $log.info("Searching for " + username)
                   http.get("https://api.github.com/users/" + username).then(onComplete, onError)
+                  if (countdownInterval) {
+                    $interval.cancel(countdownInterval)
+                    scope.countdown = null
+                  }
                 }
 
   scope.message="Github Viewer"
@@ -44,6 +49,6 @@ var MainController = function(scope, http, $interval) {
 
   // here we ask angular to pass scope as a first parameter to function
   // which creates maincontroller regardless of funciton argument name
-  app.controller("MainController", ["$scope", "$http", MainController])
+  app.controller("MainController", ["$scope", "$http", "$interval", "$log", MainController])
 
 }());
