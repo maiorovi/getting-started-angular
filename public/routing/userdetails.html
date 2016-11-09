@@ -1,0 +1,34 @@
+<div ng-show="user" id="userDetails">
+  {{error}}
+    <ul>
+    <li>Login: {{user.login}}</li>
+    <li>Company: {{user.company}}</li>
+    <li>Pirture<img ng-src="{{user.avatar_url}}" title="{{user.login}}" /></li>
+    </ul>
+
+    <p>Order:</p>
+    <select ng-model="repoSortOrder">
+      <option disabled>Choose sorting order</option>
+      <option value="-stargazers_count">Stars</option>
+      <option value="name">Name</option>
+      <option value="language">Language</option>
+    </select>
+
+    <table>
+      <thead>
+        <tr>
+          <td>Repo name</td>
+          <td>Starred</td>
+          <td>Language</td>
+        </tr>
+      </thead>
+      <tbody ng-repeat="repo in repos|orderBy:repoSortOrder">
+        <tr>
+          <td>{{repo.name}}</td>
+          <td>{{repo.stargazers_count | number }}</td>
+          <td>{{repo.language}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a href="#/main">Back to search</a>
